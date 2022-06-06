@@ -41,7 +41,7 @@ public:
                 level.push_back(front->val);
                 for(int i = 0; i < front->children.size(); i++)
                 {
-                    if(front->children[i])
+                    // if(front->children[i])
                         q.push(front->children[i]);
                 }
             }
