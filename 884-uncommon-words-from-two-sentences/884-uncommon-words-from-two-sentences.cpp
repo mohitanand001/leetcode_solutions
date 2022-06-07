@@ -1,56 +1,55 @@
 class Solution {
 public:
-    vector<string> uncommonFromSentences(string s1, string s2) {
-     
-        string word = "";
-        map<string, int> m1, m2;
+    vector<string> uncommonFromSentences(string s1, string s2) 
+    {
+        vector<string>ans;
+        vector<string>s;
+        string temp;
+        unordered_map<string,int> m;
         
-        s1 += " ";
-        s2 += " ";
-        for(int i = 0; i < s1.size(); i++)
+        s1 = s1 + " ";
+        s2 = s2 + " ";
+        for(int i=0;i<s1.length();i++)
         {
-            if(s1[i] == ' ')
+            temp="";
+            while(s1[i]!= ' ')
             {
-                m1[word]++;
-                word = "";
+                temp+=s1[i];
+                i++;
             }
-            else
+            ans.push_back(temp);
+        }
+           
+       // for(auto& a :ans)
+       // {
+       //      m[a]++;
+       // }
+       
+        
+       for(int i=0;i<s2.length();i++)
+        {
+            temp="";
+            while(s2[i]!= ' ')
             {
-                word = word + s1[i];
+                temp+=s2[i];
+                i++;
             }
+            ans.push_back(temp);
         }
         
-        word = "";
-        for(int i = 0; i < s2.size(); i++)
+       for(auto& a :ans)
+       {
+            m[a]++;
+       }
+       
+        // return s;
+        
+        for(auto& e: m)
         {
-            if(s2[i] == ' ')
-            {
-                m2[word]++;
-                word = "";
-            }
-            else
-            {
-                word = word + s2[i];
-            }
+            if(e.second== 1)
+                s.push_back(e.first);
         }
         
-        vector<string> ans;
-        for(auto wrd: m1)
-        {
-            if(wrd.second == 1 and m2.find(wrd.first) == m2.end())
-            {
-                ans.push_back(wrd.first);
-            }
-        }
-        
-        for(auto wrd: m2)
-        {
-            if(wrd.second == 1 and m1.find(wrd.first) == m1.end())
-            {
-                ans.push_back(wrd.first);
-            }
-        }
-        
-        return ans;
+        return s;
     }
 };
