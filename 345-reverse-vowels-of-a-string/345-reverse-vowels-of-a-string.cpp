@@ -7,27 +7,31 @@ public:
             
     }
     
-    string reverseVowels(string s) {
-     
-        int i = 0, j = s.size() - 1;
+    void reverse(int i, int j, string &s)
+    {
+        if(i > j)
+            return;
         
-        while(i <= j)
+        if(is_vowel(s[i]) and is_vowel(s[j]))
         {
-            if(is_vowel(s[i]) and is_vowel(s[j]))
-            {
-                swap(s[i], s[j]);
-                i++;
-                j--;
-            }
-            else
-            {
-                if(!is_vowel(s[i]))
-                    i++;
-                if(!is_vowel(s[j]))
-                    j--;
-            }
+            swap(s[i], s[j]);
+            reverse(i + 1, j - 1, s);
         }
-        
+        else
+        {
+            if(!is_vowel(s[i]))
+                i++;
+            if(!is_vowel(s[j]))
+                j--;
+            
+            reverse(i, j, s);
+        }
+    }
+    
+    
+    string reverseVowels(string s) {
+                
+        reverse(0, s.size() - 1, s);
         return s;
     }
 };
