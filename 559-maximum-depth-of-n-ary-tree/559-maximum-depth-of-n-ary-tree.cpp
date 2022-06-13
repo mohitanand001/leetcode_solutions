@@ -27,10 +27,11 @@ public:
         
         
         int max_depth = 0;
+        vector<Node*> childs = root->children;
         
-        for(int i = 0; i < root->children.size(); i++)
+        for(int i = 0; i < childs.size(); i++)
         {
-            max_depth = max(max_depth, maxDepth(root->children[i]));
+            max_depth = max(max_depth, maxDepth(childs[i]));
         }
         
         max_depth++;
